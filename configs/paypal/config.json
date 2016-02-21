@@ -1,0 +1,11 @@
+{
+"login": {
+	"url":"https://www.paypal.com/myaccount/wallet/balance",
+	"userRef":"#email",
+	"passRef":"#password",
+	"submitRef":"#btnLogin"
+	},
+"navigation":[""],
+"balanceRef":".available:first-of-type span",
+"finally":["https://www.paypal.com/myaccount/logout"]
+}
