@@ -14,15 +14,19 @@
     "nordea",
     "paypal",
     "nordnet",
-    "neteller\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dt\u001b[C\u001b[Deller",
+    "neteller",
     "osuuspankki",
     "spankki",
     "balance"
   ],
-  "author": "pseudo",
+  "author": "apimapper",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/apimapper/balance-report/issues"
   },
-  "homepage": "https://github.com/apimapper/balance-report"
+  "homepage": "https://github.com/apimapper/balance-report",
+  "dependencies": {
+    "nightmare": "^2.2.0",
+    "vo": "^3.0.0"
+  }
 }

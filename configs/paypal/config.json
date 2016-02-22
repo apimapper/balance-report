@@ -3,9 +3,13 @@
 	"url":"https://www.paypal.com/myaccount/wallet/balance",
 	"userRef":"#email",
 	"passRef":"#password",
-	"submitRef":"#btnLogin"
+	"submitRef":"#btnLogin",
+	"submitDoneRef":".available"
 	},
-"navigation":[""],
+"navigation":{
+	"direct":"https://www.paypal.com/myaccount/wallet/balance",
+	"clickTargetRefs":[]
+},
 "balanceRef":".available:first-of-type span",
-"finally":["https://www.paypal.com/myaccount/logout"]
+"logout":"https://www.paypal.com/myaccount/logout"
 }
