@@ -34,4 +34,5 @@ node_modules
 configs/paypal/user.json
 configs/neteller/user.json
 configs/nordea/user.json
+configs/alandsbanken/user.json
 output.json
