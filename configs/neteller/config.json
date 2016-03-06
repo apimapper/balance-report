@@ -1,0 +1,11 @@
+{
+"login": {
+	"url":"https://member.neteller.com/mobile",
+	"userRef":"#emailAccountId",
+	"passRef":"#password",
+	"submitRef":"#btn-login",
+	"submitDoneRef":"#balance"
+	},
+"balanceRef":"#balance",
+"logout":"https://member.neteller.com/mobile/application/logout"
+}

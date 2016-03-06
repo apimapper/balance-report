@@ -4,7 +4,7 @@ var fs = require('fs');
 var vo = require('vo');
 configsArray = [];
 resultArray = [];
-plugins = ['paypal','paypal','paypal'];
+plugins = ['paypal','neteller','paypal'];
 
 function *runPluginConfigs() {
 	for(var index in plugins) {
@@ -18,7 +18,7 @@ function *runPluginConfigs() {
 			};
 			configsArray.push(pluginData);
 			/* begin of the nightmare */
-			var nightmare = new Nightmare({show: true});	
+			var nightmare = new Nightmare({show: false});	
 			/*go to configs.login.URL*/
 			var configs = JSON.parse(pluginData.configs);
 			var credentials = JSON.parse(pluginData.credentials);	
@@ -32,21 +32,27 @@ function *runPluginConfigs() {
 			.type(configs.login.passRef, credentials.pass)
 			.wait(configs.login.submitRef)
 			.click(configs.login.submitRef);
-			console.log("navigation starts");
+
 			yield nightmare.wait(configs.login.submitDoneRef);
-			/* navigation */
-			if(configs.navigation.direct !== undefined && configs.navigation.direct !== ""){
-				yield nightmare.goto(configs.navigation.direct);
-			}
-			else {
-				var targets = configs.navigation.clickTargetRefs;
-				for (var a in targets) {
-					var link = targets[a];
-					yield nightmare.click(link);
-					if(a < targets.length-1) {
-						var nextTarget = targets[a+1];
-						yield nightmare.wait(nextTarget);					
+			/* navigation, if needed */
+			if(configs.navigation !== undefined) {
+				console.log("navigation starts");
+				if(configs.navigation.direct !== undefined && configs.navigation.direct !== ""){
+					yield nightmare.goto(configs.navigation.direct);
+				}
+				else if(configs.navigation.clickTargetRefs !== undefined && configs.navigation.clickTargetRefs !== ""){
+					var targets = configs.navigation.clickTargetRefs;
+					for (var a in targets) {
+						var link = targets[a];
+						yield nightmare.click(link);
+						if(a < targets.length-1) {
+							var nextTarget = targets[a+1];
+							yield nightmare.wait(nextTarget);					
+						}
 					}
+				}
+				else {
+					console.log("navigation was not needed?");
 				}
 			}
 			/* read balance with configs.balanceRef */
@@ -71,4 +77,5 @@ function *runPluginConfigs() {
 vo(runPluginConfigs)(function(err, result) {
   if (err) return console.log(err);
   console.log(result);
+  fs.writeFileSync('output.json', JSON.stringify(result), 'utf-8');
 });
