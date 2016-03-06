@@ -14,5 +14,5 @@ git update-index --assume-unchanged configs/paypal/user.json
 # you need to install node.js tools npm >= 3.X.X and node > version 10
 # after node.js installation you can run these commands
 npm install
-node --harmony index.js
+npm start
 ```

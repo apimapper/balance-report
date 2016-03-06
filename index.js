@@ -4,8 +4,7 @@ var fs = require('fs');
 var vo = require('vo');
 configsArray = [];
 resultArray = [];
-//plugins = ['spankki'];
-plugins = ['paypal','neteller','nordea','spankki','alandsbanken'];
+plugins = "paypal,neteller,nordea,spankki,alandsbanken,nordnet".split(',');
 
 function *runPluginConfigs() {
 	for(var index in plugins) {
