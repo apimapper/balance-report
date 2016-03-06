@@ -1,0 +1,11 @@
+{
+"login": {
+	"url":"https://online.s-pankki.fi/ebank/accountview/overview.do",
+	"userRef":"#username",
+	"passRef":"#password",
+	"submitRef":"button[name='btn_log_in']",
+	"submitDoneRef":"#checkingAccountsTable tbody"
+	},
+"balanceRef":"#checkingAccountsTable tbody",
+"logout":"https://online.s-pankki.fi/ebank/auth/logout.do"
+}

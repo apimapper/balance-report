@@ -4,8 +4,8 @@ var fs = require('fs');
 var vo = require('vo');
 configsArray = [];
 resultArray = [];
-//plugins = ['alandsbanken'];
-plugins = ['paypal','neteller','nordea','alandsbanken'];
+//plugins = ['spankki'];
+plugins = ['paypal','neteller','nordea','spankki','alandsbanken'];
 
 function *runPluginConfigs() {
 	for(var index in plugins) {
@@ -19,7 +19,7 @@ function *runPluginConfigs() {
 			};
 			configsArray.push(pluginData);
 			/* begin of the nightmare */
-			var nightmare = new Nightmare({show: true});	
+			var nightmare = new Nightmare({show: false});	
 			/*go to configs.login.URL*/
 			var configs = JSON.parse(pluginData.configs);
 			var credentials = JSON.parse(pluginData.credentials);	
