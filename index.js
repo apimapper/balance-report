@@ -4,8 +4,8 @@ var fs = require('fs');
 var vo = require('vo');
 configsArray = [];
 resultArray = [];
-plugins = ['nordea'];
-//plugins = ['paypal','neteller','nordea'];
+//plugins = ['alandsbanken'];
+plugins = ['paypal','neteller','nordea','alandsbanken'];
 
 function *runPluginConfigs() {
 	for(var index in plugins) {

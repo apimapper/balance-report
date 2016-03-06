@@ -1,0 +1,11 @@
+{
+"login": {
+	"url":"https://online.alandsbanken.fi/ebank/accountview/overview.do",
+	"userRef":"#username",
+	"passRef":"#password",
+	"submitRef":"button[name='btn_log_in']",
+	"submitDoneRef":".content .acco"
+	},
+"balanceRef":".content .acco",
+"logout":"https://online.alandsbanken.fi/ebank/auth/logout.do"
+}
