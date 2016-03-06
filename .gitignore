@@ -36,4 +36,5 @@ configs/neteller/user.json
 configs/nordea/user.json
 configs/spankki/user.json
 configs/alandsbanken/user.json
+configs/nordnet/user.json
 output.json
