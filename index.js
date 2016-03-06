@@ -4,7 +4,8 @@ var fs = require('fs');
 var vo = require('vo');
 configsArray = [];
 resultArray = [];
-plugins = ['paypal','neteller','paypal'];
+plugins = ['nordea'];
+//plugins = ['paypal','neteller','nordea'];
 
 function *runPluginConfigs() {
 	for(var index in plugins) {
@@ -18,13 +19,28 @@ function *runPluginConfigs() {
 			};
 			configsArray.push(pluginData);
 			/* begin of the nightmare */
-			var nightmare = new Nightmare({show: false});	
+			var nightmare = new Nightmare({show: true});	
 			/*go to configs.login.URL*/
 			var configs = JSON.parse(pluginData.configs);
 			var credentials = JSON.parse(pluginData.credentials);	
 			console.log("login starts");
-			yield nightmare.goto(configs.login.url)
-			.wait(configs.login.userRef)
+			yield nightmare.goto(configs.login.url);
+			/* login-navigation, if needed */
+			if(configs.login.clickTargetRefs !== undefined && configs.login.clickTargetRefs !== ""){
+				var targets = configs.login.clickTargetRefs;
+				for (var a in targets) {
+					var link = targets[a];
+					yield nightmare.click(link);
+					if(a < targets.length-1) {
+						var nextTarget = targets[a+1];
+						yield nightmare.wait(nextTarget);					
+					}
+				}
+			}
+			else {
+				console.log("login-navigation was not needed?");
+			}
+			yield nightmare.wait(configs.login.userRef)
 			.type(configs.login.userRef,"")
 			.type(configs.login.userRef, credentials.user)
 			.wait(configs.login.passRef)
@@ -34,7 +50,7 @@ function *runPluginConfigs() {
 			.click(configs.login.submitRef);
 
 			yield nightmare.wait(configs.login.submitDoneRef);
-			/* navigation, if needed */
+			/* to-balance-navigation, if needed */
 			if(configs.navigation !== undefined) {
 				console.log("navigation starts");
 				if(configs.navigation.direct !== undefined && configs.navigation.direct !== ""){
@@ -63,8 +79,22 @@ function *runPluginConfigs() {
 				return document.querySelector(selector).innerText;
 			},selector);
 			console.log("logging out");
-			yield nightmare.goto(configs.logout)
-			.wait()
+			/* logout-navigation, if needed */
+			if(configs.logoutClickTargetRefs !== undefined && configs.logoutClickTargetRefs !== ""){
+				var targets = configs.logoutClickTargetRefs;
+				for (var a in targets) {
+					var link = targets[a];
+					yield nightmare.click(link);
+					if(a < targets.length-1) {
+						var nextTarget = targets[a+1];
+						yield nightmare.wait(nextTarget);					
+					}
+				}
+			}
+			else {
+				yield nightmare.goto(configs.logout);
+			}
+			yield nightmare.wait()
 		    .end();
 			var object = {};
 			object.name = pluginName;

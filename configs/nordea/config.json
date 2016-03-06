@@ -1,0 +1,12 @@
+{
+"login": {
+	"url":"https://solo1.nordea.fi/nsp/login",
+	"clickTargetRefs":["a[href*='commonlogintabForLimitedNetBank=1']","a[href*='commonlogintabForLimitedNetBank=2']","a[href*='commonlogintabForLimitedNetBank=0']","a[href*='commonlogintabForLimitedNetBank=1']"],
+	"userRef":"#userid",
+	"passRef":"#pin1",
+	"submitRef":"input[name*='commonlogin$doLightloginFor']",
+	"submitDoneRef":"#currentaccountsoverviewtable tbody"
+	},
+"balanceRef":"#currentaccountsoverviewtable tbody",
+"logoutClickTargetRefs":["#log_out a"]
+}
