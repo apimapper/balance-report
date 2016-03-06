@@ -1,0 +1,11 @@
+{
+"login": {
+	"url":"https://www.nordnet.fi/mux/login/startFI.html?cmpi=start-loggain",
+	"userRef":"#input1",
+	"passRef":"#pContent",
+	"submitRef":"#login_btn",
+	"submitDoneRef":"#accounts .value"
+	},
+"balanceRef":"#accounts .value",
+"logoutClickTargetRefs":["#supportNavLogout a"]
+}
